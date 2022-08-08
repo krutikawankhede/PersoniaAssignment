@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  personia-employee-service:
+    container_name: personia-employee-service
+    image: personia-employee-service:0.0.1
+    build:
+      network: host
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
