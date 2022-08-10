@@ -1,0 +1,9 @@
+server:
+  port: 8080
+logging:
+  level:
+    web: debug
+    com.demo.warehouseservice: debug
+spring:
+  application:
+    name: personia-service

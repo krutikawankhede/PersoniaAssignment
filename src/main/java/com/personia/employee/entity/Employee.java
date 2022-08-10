@@ -1,10 +1,19 @@
 package com.personia.employee.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Employee implements Serializable {
 
     @Id
@@ -12,20 +21,4 @@ public class Employee implements Serializable {
 
     private String supervisor;
 
-    public String getName() {
-        return name;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSupervisor() {
-        return supervisor;
-    }
-
-    public void setSupervisor(String supervisor) {
-        this.supervisor = supervisor;
-    }
 }

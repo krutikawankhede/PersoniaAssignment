@@ -1,7 +1,7 @@
 package com.personia.employee.service;
 
-import com.personia.employee.repository.EmployeeRepository;
 import com.personia.employee.entity.Employee;
+import com.personia.employee.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -41,8 +41,14 @@ class EmployeeServiceTest {
         HashMap map = new HashMap();
         map.put("Pete","Nick");
         map.put("Nick","Sophia");
-        when(employeeService.saveEmployee(map)).thenReturn("Employees are added successfully");
-        assertThat(employeeService.saveEmployee(map)).isEqualTo("Employees are added successfully");
+        emp.setName("Pete");
+        emp.setSupervisor("Nick");
+        list.add(emp);
+        emp.setName("Nick");
+        emp.setSupervisor("Sophie");
+        list.add(emp);
+        when(employeeService.saveEmployee(map)).thenReturn(list);
+        assertThat(employeeService.saveEmployee(map)).isEqualTo(list);
     }
 
     @Test

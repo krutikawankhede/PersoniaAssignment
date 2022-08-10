@@ -18,9 +18,9 @@ docker-compose up --build
 
 As a HR you will have all the access to add the admin to the database
 # Add employee API:
-This Api will be avaible only with the admin cris and before using personia service she needs to register herslef with personia using below api
+This Api will be available only with the admin cris and before using personia service she needs to register herslef with personia using below api
 
-    POST API : localhost:8080/addEmployee
+    POST API : localhost:8080/admin/addEmployee
     Accepts json : {
         "username":"cris",
         "password":"cris"
@@ -37,10 +37,10 @@ This api will generate a token to access the application present in personia ser
         "password":"cris"
     }
 
-# Create Employee Hirarchy
-Add the employee and their respective supervisor in personia database.
+# Employee Hirarchy relationship
+This api will take the json and send the response with hirarchy
 
-    POST API : localhost:8080/personia-service/generateToken
+    POST API : localhost:8080/personia-service/employeeRelationship
     Accepts json : {
         "Sophie":"Jonas",
         "Nick":"Sophie"
@@ -49,14 +49,9 @@ Add the employee and their respective supervisor in personia database.
     }
 
 
-# Get Employee Hirarchy
-This api will give all the hierarchy present the the database
 
-    GET API : localhost:8080/personia-service/generateToken
-
-
-# Get Supervisor deatils for Employee Hirarchy
-This api will give all all the respective supervisors for the employee in a list where employee is at the start of the list.
+# Get Supervisor details for Employee Hirarchy
+This api will give all the respective supervisors for the employee in a list where employee is at the start of the list.
 
     GET API locakhost:8080:/personia-service/getSupervisorDetails/{name}
 

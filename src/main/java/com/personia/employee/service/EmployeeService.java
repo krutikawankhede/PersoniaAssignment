@@ -2,12 +2,10 @@ package com.personia.employee.service;
 
 import com.personia.employee.entity.Employee;
 import com.personia.employee.entity.EmployeeCredentials;
-import com.personia.employee.repository.EmployeeCredentialsRepository;
 import com.personia.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,17 +27,21 @@ public class EmployeeService {
 
     private Employee employeeEntity;
 
-    @Transactional
-    public String saveEmployee(Map<String, String> employee) {
 
-        for (Map.Entry<String, String> emp : employee.entrySet()) {
-            employeeEntity = new Employee();
-            employeeEntity.setName(emp.getKey());
-            employeeEntity.setSupervisor(emp.getValue());
-            employeeRepository.save(employeeEntity);
+    public List<Employee> saveEmployee(Map<String, String> employee) {
 
-        }
-        return "Employees are added successfully";
+        HashMap<String, String> hashMap = new HashMap<>();
+        List<Employee> employeeList = new ArrayList<>();
+            for (String key : employee.keySet()) {
+                employeeEntity = new Employee();
+                employeeEntity.setName(key);
+                employeeEntity.setSupervisor(employee.get(key));
+                hashMap.put(key, employee.get(key));
+                employeeList.add(employeeEntity);
+
+            }
+            return employeeRepository.saveAll(employeeList);
+
     }
 
     public HashMap getAllEmployee() {
