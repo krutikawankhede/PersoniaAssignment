@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.util.MultiValueMap;
 
 import java.util.HashMap;
 
@@ -47,11 +48,9 @@ class ManageEmployeeCredentialControllerTest {
         HashMap hashMap = new HashMap();
         hashMap.put("Nick","Sophie");
 
-
         MvcResult mvcResult = this.mockMvc
-                .perform(MockMvcRequestBuilders.post("/addEmployee")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(employee1.toString()))
+                .perform(MockMvcRequestBuilders.post("/admin/addEmployee").param("username","krutika")
+                        .param("password","krutika"))
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();
         assertEquals(400, status);
